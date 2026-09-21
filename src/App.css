@@ -1,0 +1,684 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =================================================
+   HERO
+================================================= */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    background: #000;
+}
+
+
+/* =================================================
+   BACKGROUND
+================================================= */
+
+.railway-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 70% 35%,
+            #333 0%,
+            #111 35%,
+            #050505 70%,
+            #000 100%
+        );
+}
+
+
+/* =================================================
+   RAILWAY TRACKS
+================================================= */
+
+.rail-track {
+    position: absolute;
+    height: 4px;
+    background: #777;
+    transform-origin: left center;
+
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.track-one {
+    width: 150%;
+    left: -20%;
+    bottom: 15%;
+    transform: rotate(-7deg);
+}
+
+.track-two {
+    width: 150%;
+    left: -20%;
+    bottom: 28%;
+    transform: rotate(-4deg);
+}
+
+.track-three {
+    width: 150%;
+    left: -20%;
+    bottom: 40%;
+    transform: rotate(-1deg);
+}
+
+
+/* =================================================
+   TEMPORARY TRAINS
+   These are ONLY placeholders.
+   We will replace them with the realistic
+   GSAP railway scene later.
+================================================= */
+
+.train {
+    position: absolute;
+    width: 170px;
+    height: 45px;
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eee,
+            #777 45%,
+            #222 46%,
+            #111
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Windows */
+
+.train::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 9px;
+    width: 25px;
+    height: 18px;
+
+    background: #111;
+
+    box-shadow:
+        35px 0 #111,
+        70px 0 #111,
+        105px 0 #111;
+}
+
+
+/* Headlight */
+
+.train::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: 15px;
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+    background: white;
+
+    box-shadow:
+        0 0 15px white,
+        0 0 30px white;
+}
+
+
+/* Moving placeholders */
+
+.train-one {
+    left: -200px;
+    bottom: 18%;
+    animation: moveTrainOne 7s linear infinite;
+}
+
+.train-two {
+    right: -200px;
+    bottom: 30%;
+    transform: scale(0.75);
+    animation: moveTrainTwo 9s linear infinite;
+}
+
+.train-three {
+    left: -200px;
+    bottom: 42%;
+    transform: scale(0.55);
+    animation: moveTrainThree 6s linear infinite;
+}
+
+
+@keyframes moveTrainOne {
+    from {
+        left: -200px;
+    }
+
+    to {
+        left: 110%;
+    }
+}
+
+@keyframes moveTrainTwo {
+    from {
+        right: -200px;
+    }
+
+    to {
+        right: 110%;
+    }
+}
+
+@keyframes moveTrainThree {
+    from {
+        left: -200px;
+    }
+
+    to {
+        left: 110%;
+    }
+}
+
+
+/* =================================================
+   DARK CINEMATIC OVERLAY
+================================================= */
+
+.dark-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.65)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.95),
+            transparent 60%
+        );
+}
+
+
+/* =================================================
+   NAVBAR
+================================================= */
+
+.navbar {
+    position: absolute;
+    z-index: 20;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    padding: 32px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =================================================
+   RUNTIME TRACK LOGO
+================================================= */
+
+.logo {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 0.85;
+
+    text-decoration: none;
+    color: white;
+
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.logo span:last-child {
+    font-weight: 300;
+    letter-spacing: 6px;
+}
+
+
+/* =================================================
+   NAVIGATION LINKS
+================================================= */
+
+.nav-links {
+    display: flex;
+    gap: 38px;
+
+    margin-left: auto;
+    margin-right: 45px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+
+    font-size: 10px;
+    letter-spacing: 2.5px;
+
+    opacity: 0.7;
+
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+
+/* =================================================
+   MENU
+================================================= */
+
+.menu-button {
+    padding: 11px 20px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    color: white;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   HERO CONTENT
+================================================= */
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+
+  max-width: 900px;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.eyebrow {
+    margin-bottom: 25px;
+
+    font-size: 10px;
+    letter-spacing: 5px;
+
+    color: #ddd;
+}
+
+.hero-content h1 {
+    font-size: clamp(70px, 12vw, 165px);
+
+    line-height: 0.82;
+    letter-spacing: -6px;
+
+    font-weight: 900;
+    color: #ffffff !important;
+    color: white !important;
+}
+
+.hero-description {
+  max-width: 620px;
+  margin: 25px auto 35px;
+  text-align: center;
+  color: #ffffff;
+}
+
+
+/* =================================================
+   INSTALL BUTTON
+================================================= */
+
+.install-button {
+    margin-top: 30px;
+
+    padding: 16px 25px;
+
+    border: none;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.install-button span {
+    margin-left: 18px;
+}
+
+.install-button:hover {
+    transform: translateY(-3px);
+    background: #ddd;
+}
+
+
+/* =================================================
+   HERO INFORMATION
+================================================= */
+
+.hero-info {
+    position: absolute;
+    z-index: 20;
+
+    left: 5%;
+    right: 5%;
+    bottom: 25px;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #888;
+
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+
+/* =================================================
+   MAIN
+================================================= */
+
+main {
+    background: #000;
+}
+
+
+/* =================================================
+   INTRO
+================================================= */
+
+.intro {
+    min-height: 80vh;
+
+    padding: 140px 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-number {
+    color: #777;
+
+    font-size: 10px;
+    letter-spacing: 4px;
+
+    margin-bottom: 35px;
+}
+
+.intro h2,
+.software h2 {
+    font-size: clamp(45px, 7vw, 100px);
+
+    line-height: 0.95;
+    letter-spacing: -4px;
+}
+
+.intro-text {
+    max-width: 600px;
+    margin: 45px auto 0;
+    text-align: center;
+    color: #999;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* =================================================
+   FEATURES
+================================================= */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.feature-card {
+    min-height: 350px;
+
+    padding: 60px 45px;
+
+    border-right: 1px solid #222;
+}
+
+.feature-card:last-child {
+    border-right: none;
+}
+
+.feature-card span {
+    color: #666;
+    font-size: 11px;
+}
+
+.feature-card h3 {
+    margin-top: 80px;
+
+    font-size: 27px;
+    letter-spacing: 2px;
+}
+
+.feature-card p {
+    margin-top: 20px;
+
+    color: #777;
+
+    line-height: 1.6;
+}
+
+
+/* =================================================
+   SOFTWARE
+================================================= */
+
+.software {
+    min-height: 75vh;
+
+    padding: 140px 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.software p:not(.section-number) {
+    max-width: 550px;
+    margin: 40px auto 0;
+    text-align: center;
+    color: #888;
+    line-height: 1.7;
+}
+
+
+/* =================================================
+   FOOTER
+================================================= */
+
+footer {
+    padding: 100px 7% 30px;
+
+    background: #050505;
+
+    border-top: 1px solid #222;
+}
+
+.footer-main {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 50px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 50px;
+    font-weight: 900;
+
+    line-height: 0.85;
+    letter-spacing: -2px;
+}
+
+.footer-brand span:last-child {
+    font-weight: 300;
+    letter-spacing: 5px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.footer-column h4 {
+    margin-bottom: 15px;
+
+    color: #555;
+
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.footer-column a {
+    color: #888;
+    text-decoration: none;
+
+    font-size: 12px;
+
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+
+/* =================================================
+   FOOTER BOTTOM
+================================================= */
+
+.footer-bottom {
+    margin-top: 100px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #222;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #555;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+
+/* =================================================
+   MOBILE
+================================================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content {
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 120px;
+    }
+
+    .hero-content h1 {
+    font-size: clamp(48px, 14vw, 70px);
+    letter-spacing: -3px;
+    }
+
+    
+    .hero-info {
+        display: none;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        border-right: none;
+        border-bottom: 1px solid #222;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+    
+  
