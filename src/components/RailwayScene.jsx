@@ -22,7 +22,10 @@ function RailwayScene() {
         playsInline
         onLoadedMetadata={handleLoadedMetadata}
       >
-        <source src="/railway-video.mp4" type="video/mp4" />
+        <source
+          src="https://61i3qqcafqknmgnw.public.blob.vercel-storage.com/railway-video.mp4"
+          type="video/mp4"
+        />
       </video>
 
       <div className="video-overlay"></div>
