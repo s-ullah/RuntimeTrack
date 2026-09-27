@@ -1,7 +1,23 @@
+import { useState } from "react";
 import "./App.css";
 import RailwayScene from "./components/RailwayScene";
+import RuntimeDashboard from "./RuntimeDashboard";
 
 function App() {
+  const [softwareInstalled, setSoftwareInstalled] = useState(false);
+  const [installing, setInstalling] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
+  if (showDashboard) {
+  return (
+    <RuntimeDashboard
+      onBack={() => {
+        setShowDashboard(false);
+        setSoftwareInstalled(false);
+        setInstalling(false);
+      }}
+    />
+  );
+}
   return (
     <>
       {/* ================= HEADER ================= */}
@@ -55,11 +71,45 @@ function App() {
             train operations.
           </p>
 
-          <button className="install-button">
-            INSTALL SOFTWARE
-            <span>↗</span>
-          </button>
+          <button
+            className={`install-button ${
+    installing ? "installing" : ""
+  } ${softwareInstalled ? "installed" : ""}`}
+  onClick={() => {
+    if (softwareInstalled || installing) return;
 
+    setInstalling(true);
+
+    setTimeout(() => {
+      setInstalling(false);
+      setSoftwareInstalled(true);
+
+      setTimeout(() => {
+      window.scrollTo({
+      top: 0,
+      behavior: "instant"
+  });
+  window.scrollTo({
+  top: 0,
+  behavior: "instant"
+});
+
+  setShowDashboard(true);
+}, 1200);
+    }, 1500);
+  }}
+>
+  {installing ? (
+    <>INSTALLING...</>
+  ) : softwareInstalled ? (
+    <>✓ SOFTWARE INSTALLED</>
+  ) : (
+    <>
+      INSTALL SOFTWARE
+      <span>↗</span>
+    </>
+  )}
+</button>
         </div>
 
         {/* Bottom information */}
@@ -166,10 +216,38 @@ function App() {
             into a coordinated, data-driven process.
           </p>
 
-          <button className="install-button">
-            INSTALL SOFTWARE
-            <span>↗</span>
-          </button>
+          <button
+            className="install-button"
+  onClick={() => {
+    if (softwareInstalled) return;
+
+    setInstalling(true);
+
+    setTimeout(() => {
+      setInstalling(false);
+      setSoftwareInstalled(true);
+
+      setTimeout(() => {
+      setShowDashboard(true);
+
+      setTimeout(() => {
+      window.scrollTo(0, 0);
+      }, 100);
+      }, 1200);
+    }, 1500);
+  }}
+>
+  {softwareInstalled ? (
+    <>✓ SOFTWARE INSTALLED</>
+  ) : installing ? (
+    <>INSTALLING...</>
+  ) : (
+    <>
+      INSTALL SOFTWARE
+      <span>↗</span>
+    </>
+  )}
+</button>
 
         </section>
 

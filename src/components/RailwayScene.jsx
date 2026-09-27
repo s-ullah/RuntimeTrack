@@ -20,10 +20,11 @@ function RailwayScene() {
         muted
         loop
         playsInline
+        preload="auto"
         onLoadedMetadata={handleLoadedMetadata}
       >
         <source
-          src="https://61i3qqcafqknmgnw.public.blob.vercel-storage.com/railway-video.mp4"
+          src="/railway-video-web.mp4"
           type="video/mp4"
         />
       </video>
